@@ -26,7 +26,8 @@ namespace Application.Services
                 Name = s.Name, 
                 Email = s.Email,
                 ProgramName = s.Program?.Name ?? "",                 
-                AvailableCredits = s.AvailableCredits
+                AvailableCredits = s.AvailableCredits,
+                UserId = s.UserId
             });
         }
 
@@ -39,7 +40,8 @@ namespace Application.Services
                 Name = student.Name, 
                 Email = student.Email,
                 ProgramName = student.Program?.Name ?? "", 
-                AvailableCredits = student.AvailableCredits 
+                AvailableCredits = student.AvailableCredits, 
+                UserId = student.UserId 
             };
         }
 
@@ -57,6 +59,15 @@ namespace Application.Services
 
             student = await _studentRepository.AddAsync(student);
             return new StudentDto { Id = student.Id, Name = student.Name, Email = student.Email };
+        }
+
+        public async Task<IEnumerable<ClassmateDto>> GetClassmatesAsync(Guid studentId)
+        {
+            var classmates = await _studentRepository.GetClassmatesAsync(studentId);
+            return classmates.Select(c => new ClassmateDto
+            {
+                Name = c.UserId.ToString()
+            });
         }
 
         public async Task<StudentDto> AssignProgramAsync(AssignProgramDto assignProgramDto)

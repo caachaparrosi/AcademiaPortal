@@ -6,6 +6,6 @@ namespace Application.Services
     {
         Task<IEnumerable<TeacherDto>> GetAllAsync();
         Task<TeacherDto?> GetByIdAsync(Guid id);
-        Task<TeacherDto> CreateAsync(CreateTeacherDto teacherDto);
+        // Task<TeacherDto> CreateAsync(CreateTeacherDto teacherDto);
     }
 }

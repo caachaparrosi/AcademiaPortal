@@ -31,19 +31,19 @@ namespace Backend.Controllers
             return Ok(student);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateStudentDto studentDto)
-        {
-            try
-            {
-                var student = await _studentService.CreateAsync(studentDto);
-                return CreatedAtAction(nameof(GetById), new { id = student.Id }, student);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] CreateStudentDto studentDto)
+        // {
+        //     try
+        //     {
+        //         var student = await _studentService.CreateAsync(studentDto);
+        //         return CreatedAtAction(nameof(GetById), new { id = student.Id }, student);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(new { message = ex.Message });
+        //     }
+        // }
 
         [HttpPost("{studentId}/assign-program")]
         public async Task<IActionResult> AssignProgram([FromBody] AssignProgramDto assignProgramDto)
@@ -71,6 +71,13 @@ namespace Backend.Controllers
             {
                 return BadRequest(new { message = ex.Message });
             }
+        }
+
+        [HttpGet("{studentId}/classmates")]
+        public async Task<IActionResult> GetClassmates(Guid studentId)
+        {
+            var classmates = await _studentService.GetClassmatesAsync(studentId);
+            return Ok(classmates);
         }
 
     }

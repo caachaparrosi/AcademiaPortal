@@ -22,18 +22,18 @@ namespace Backend.Controllers
             return Ok(teachers);
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTeacherDto teacherDto)
-        {
-            try
-            {
-                var teacher = await _teacherService.CreateAsync(teacherDto);
-                return CreatedAtAction(nameof(GetAll), new { id = teacher.Id }, teacher);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(new { message = ex.Message });
-            }
-        }
+        // [HttpPost]
+        // public async Task<IActionResult> Create([FromBody] CreateTeacherDto teacherDto)
+        // {
+        //     try
+        //     {
+        //         var teacher = await _teacherService.CreateAsync(teacherDto);
+        //         return CreatedAtAction(nameof(GetAll), new { id = teacher.Id }, teacher);
+        //     }
+        //     catch (Exception ex)
+        //     {
+        //         return BadRequest(new { message = ex.Message });
+        //     }
+        // }
     }
 }
