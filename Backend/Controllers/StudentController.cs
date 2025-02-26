@@ -44,5 +44,19 @@ namespace Backend.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpPost("{studentId}/assign-program")]
+        public async Task<IActionResult> AssignProgram([FromBody] AssignProgramDto assignProgramDto)
+        {
+            try
+            {
+                var student = await _studentService.AssignProgramAsync(assignProgramDto);
+                return Ok(student);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

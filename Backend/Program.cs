@@ -17,6 +17,7 @@ builder.Services.AddScoped<ICourseRepository, CourseRepository>();
 builder.Services.AddScoped<ICourseService, CourseService>();
 builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
 builder.Services.AddScoped<ITeacherService, TeacherService>();
+builder.Services.AddScoped<IProgramRepository, ProgramRepository>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

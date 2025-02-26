@@ -16,12 +16,12 @@ namespace Infrastructure.Repositories
 
         public async Task<IEnumerable<Student>> GetAllAsync()
         {
-            return await _context.Students.ToListAsync();
+            return await _context.Students.Include(c => c.Program).ToListAsync();
         }
 
         public async Task<Student?> GetByIdAsync(Guid id)
         {
-            return await _context.Students.FindAsync(id);
+            return await _context.Students.Include(c => c.Program).FirstOrDefaultAsync(c => c.Id == id);
         }
 
         public async Task<Student> AddAsync(Student student)
@@ -34,6 +34,12 @@ namespace Infrastructure.Repositories
         public async Task<bool> ExistsAsync(string email)
         {
             return await _context.Students.AnyAsync(s => s.Email == email);
+        }
+
+        public async Task UpdateAsync(Student student)
+        {
+            _context.Students.Update(student);
+            await _context.SaveChangesAsync();
         }
     }
 }

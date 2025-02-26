@@ -8,5 +8,6 @@ namespace Core.Interfaces
         Task<Student?> GetByIdAsync(Guid id);
         Task<Student> AddAsync(Student student);
         Task<bool> ExistsAsync(string email);
+        Task UpdateAsync(Student student);
     }
 }
