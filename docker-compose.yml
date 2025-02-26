@@ -1,0 +1,44 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver_container
+    restart: always
+    environment:
+      SA_PASSWORD: "Test1234"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserver_data:/var/opt/mssql
+
+  backend:
+    build:
+      context: .
+      dockerfile: Backend/Dockerfile
+    container_name: backend_api
+    depends_on:
+      - sqlserver
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=AcademiaPortalDB;User Id=sa;Password=Test1234;Encrypt=false;TrustServerCertificate=true;"
+      ASPNETCORE_ENVIRONMENT: "Development"
+    ports:
+      - "5000:8080"
+
+  migrations:
+    image: mcr.microsoft.com/dotnet/sdk:8.0
+    container_name: migrations
+    depends_on:
+      - sqlserver
+    environment:
+      ConnectionStrings__DefaultConnection: "Server=sqlserver;Database=AcademiaPortalDB;User Id=sa;Password=Test1234;Encrypt=false;TrustServerCertificate=true;"
+    volumes:
+      - .:/app
+    working_dir: /app
+    command: tail -f /dev/null
+
+volumes:
+  sqlserver_data:
+
+networks:
+  backend_network:
+    driver: bridge

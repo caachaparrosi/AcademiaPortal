@@ -22,4 +22,4 @@ Thumbs.db
 .DS_Store
 
 # Archivos de migración generados por EF Core
-Migrations/
+# Migrations/

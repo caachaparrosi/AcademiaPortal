@@ -31,6 +31,7 @@ namespace Infrastructure.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
@@ -39,13 +40,29 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Students",
+                name: "Users",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true)
+                    Role = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Students",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ProgramId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    AvailableCredits = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,14 +112,14 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.InsertData(
                 table: "Teachers",
-                columns: new[] { "Id", "Name" },
+                columns: new[] { "Id", "Name", "UserId" },
                 values: new object[,]
                 {
-                    { new Guid("5639e743-26bf-4e1e-bc99-a075ee33b30f"), "Profesor D" },
-                    { new Guid("8a9a9af4-2afe-42f4-97dc-60122239279b"), "Profesor B" },
-                    { new Guid("a9976d54-fedb-43f9-9015-25a960704818"), "Profesor C" },
-                    { new Guid("ae9a6102-0905-4bf1-8d2f-72e74e820b0c"), "Profesor A" },
-                    { new Guid("fb038367-2884-45cd-b1ff-a9f1d1308f7a"), "Profesor E" }
+                    { new Guid("5639e743-26bf-4e1e-bc99-a075ee33b30f"), "Profesor D", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("8a9a9af4-2afe-42f4-97dc-60122239279b"), "Profesor B", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("a9976d54-fedb-43f9-9015-25a960704818"), "Profesor C", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("ae9a6102-0905-4bf1-8d2f-72e74e820b0c"), "Profesor A", new Guid("00000000-0000-0000-0000-000000000000") },
+                    { new Guid("fb038367-2884-45cd-b1ff-a9f1d1308f7a"), "Profesor E", new Guid("00000000-0000-0000-0000-000000000000") }
                 });
 
             migrationBuilder.InsertData(
@@ -143,6 +160,9 @@ namespace Infrastructure.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Courses");
+
+            migrationBuilder.DropTable(
+                name: "Users");
 
             migrationBuilder.DropTable(
                 name: "Students");
