@@ -1,12 +1,13 @@
 # AcademiaPortal - Backend
 
-## Descripción
+## 🚀 Descripción
 AcademiaPortal es una API desarrollada en **.NET 8 y SQL Server** que permite gestionar estudiantes, profesores y materias en un sistema académico. 
 Los estudiantes pueden inscribirse en programas de estudio, seleccionar materias y visualizar a sus compañeros de clase. 
 
 Este proyecto está diseñado con una **arquitectura en capas** y se ejecuta en **contenedores Docker** o de forma local.
 
 Camilo Chaparro - Desarrollador de Software
+
 ---
 
 ## 🛠️ Tecnologías Utilizadas
@@ -19,7 +20,7 @@ Camilo Chaparro - Desarrollador de Software
 
 ---
 
-## Prerrequisitos
+## ⚙️ Prerrequisitos
 Antes de ejecutar el proyecto, asegúrate de tener instalados:
 - [Docker](https://www.docker.com/get-started)
 - [.NET SDK 8](https://dotnet.microsoft.com/en-us/download)
@@ -125,11 +126,12 @@ docker-compose down
 docker volume rm academiaportal_sqlserver_data
 ```
 
-## Previsualización
+## 🔍 Previsualización
 
-![Imagen 1](Assets/Captura1.png)
+<img src="Assets/Captura1.png" alt="Imagen 1" width="350"/>
 
-![Imagen 2](Assets/Captura2.png)
+<br>
 
+<img src="Assets/Captura2.png" alt="Imagen 2" width="350"/>
 
 
