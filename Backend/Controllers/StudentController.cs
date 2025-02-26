@@ -58,5 +58,20 @@ namespace Backend.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpPost("{studentId}/add-courses")]
+        public async Task<IActionResult> AddCoursesToStudent([FromBody] SelectCoursesDto selectCoursesDto)
+        {
+            try
+            {
+                var student = await _studentService.AddCoursesToStudentAsync(selectCoursesDto);
+                return Ok(student);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
+
     }
 }

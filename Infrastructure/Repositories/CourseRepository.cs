@@ -24,6 +24,11 @@ namespace Infrastructure.Repositories
             return await _context.Courses.Include(c => c.Teacher).FirstOrDefaultAsync(c => c.Id == id);
         }
 
+        public async Task<List<Course>> GetByIdsAsync(List<Guid> ids)
+        {
+            return await _context.Courses.Include(c => c.Teacher).Where(c => ids.Contains(c.Id)).ToListAsync();
+        }
+
         public async Task<Course> AddAsync(Course course)
         {
             _context.Courses.Add(course);

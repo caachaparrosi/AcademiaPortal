@@ -8,5 +8,6 @@ namespace Application.Services
         Task<StudentDto?> GetByIdAsync(Guid id);
         Task<StudentDto> CreateAsync(CreateStudentDto studentDto);
         Task<StudentDto> AssignProgramAsync(AssignProgramDto assignProgramDto);
+        Task<StudentDto> AddCoursesToStudentAsync(SelectCoursesDto selectCoursesDto);
     }
 }

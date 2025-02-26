@@ -8,5 +8,6 @@ namespace Core.Models
         public List<Course> Courses { get; set; } = new List<Course>();
         public Guid? ProgramId { get; set; }
         public Program? Program { get; set; }
+        public int AvailableCredits { get; set; }
     }
 }

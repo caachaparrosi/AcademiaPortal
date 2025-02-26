@@ -24,9 +24,5 @@ namespace Infrastructure.Repositories
             return await _context.Program.FirstOrDefaultAsync(c => c.Id == id);
         }
 
-        public async Task<bool> ExistsAsync(string name)
-        {
-            return await _context.Program.AnyAsync(c => c.Name == name);
-        }
     }
 }
