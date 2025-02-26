@@ -13,7 +13,10 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Registrar servicios y repositorios
 builder.Services.AddScoped<IStudentRepository, StudentRepository>();
 builder.Services.AddScoped<IStudentService, StudentService>();
-
+builder.Services.AddScoped<ICourseRepository, CourseRepository>();
+builder.Services.AddScoped<ICourseService, CourseService>();
+builder.Services.AddScoped<ITeacherRepository, TeacherRepository>();
+builder.Services.AddScoped<ITeacherService, TeacherService>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();

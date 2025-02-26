@@ -40,5 +40,26 @@ namespace Application.Services
             student = await _studentRepository.AddAsync(student);
             return new StudentDto { Id = student.Id, Name = student.Name, Email = student.Email };
         }
+
+        public async Task<StudentDto> AddCoursesToStudent(Guid studentId, List<Guid> courseIds)
+        {
+            var student = await _studentRepository.GetByIdAsync(studentId);
+            if (student == null)
+                throw new Exception("El estudiante no existe.");
+
+            if (courseIds.Count > 3)
+                throw new Exception("Un estudiante solo puede inscribirse en 3 materias.");
+
+            var selectedCourses = await _courseRepository.GetByIdsAsync(courseIds);
+            var uniqueTeachers = selectedCourses.Select(c => c.TeacherId).Distinct().Count();
+            
+            if (uniqueTeachers < selectedCourses.Count)
+                throw new Exception("No puedes seleccionar materias con el mismo profesor.");
+
+            student.Courses.AddRange(selectedCourses);
+            await _studentRepository.UpdateAsync(student);
+
+            return new StudentDto { Id = student.Id, Name = student.Name, Email = student.Email };
+        }
     }
 }
