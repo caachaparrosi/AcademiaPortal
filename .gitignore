@@ -17,7 +17,6 @@ obj/
 *.db-wal
 
 # Configuraciones de usuario y archivos generados por herramientas
-appsettings.Development.json
 Thumbs.db
 *.swp
 .DS_Store

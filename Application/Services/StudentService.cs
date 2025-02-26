@@ -25,7 +25,7 @@ namespace Application.Services
                 Id = s.Id, 
                 Name = s.Name, 
                 Email = s.Email,
-                ProgramName = s.Program.Name,                 
+                ProgramName = s.Program?.Name ?? "",                 
                 AvailableCredits = s.AvailableCredits
             });
         }
@@ -38,7 +38,7 @@ namespace Application.Services
                 Id = student.Id, 
                 Name = student.Name, 
                 Email = student.Email,
-                ProgramName = student.Program.Name,  
+                ProgramName = student.Program?.Name ?? "", 
                 AvailableCredits = student.AvailableCredits 
             };
         }
@@ -79,7 +79,7 @@ namespace Application.Services
                 Id = student.Id,
                 Name = student.Name,
                 Email = student.Email,
-                ProgramName = student.Program.Name,
+                ProgramName = student.Program?.Name ?? "",
                 AvailableCredits = student.AvailableCredits
             };
         }
@@ -117,7 +117,7 @@ namespace Application.Services
                 Id = course.Id,
                 Name = course.Name,
                 Credits = course.Credits,
-                TeacherName = course.Teacher?.Name
+                TeacherName = course.Teacher.Name
             }).ToList();
 
             return new StudentDto
@@ -125,7 +125,7 @@ namespace Application.Services
                 Id = student.Id,
                 Name = student.Name,
                 Email = student.Email,
-                ProgramName = student.Program.Name,
+                ProgramName = student.Program?.Name ?? "",
                 AvailableCredits = student.AvailableCredits,
                 Courses = courseDtos
             };
