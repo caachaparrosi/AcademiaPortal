@@ -33,7 +33,7 @@ Antes de ejecutar el proyecto, asegúrate de tener instalados:
 
 ### **1️⃣ Clonar el Repositorio**
 ```bash
-git clone https://github.com/tu-usuario/AcademiaPortal.git
+git clone https://github.com/caachaparrosi/AcademiaPortal.git
 cd AcademiaPortal
 ```
 
