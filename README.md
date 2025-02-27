@@ -69,6 +69,10 @@ dotnet tool restore
 ```
 Aplica migraciones en la base de datos
 ```bash
+dotnet ef database update --project Infrastructure --startup-project Backend  
+```
+ó
+```bash
 dotnet ef database update --project Infrastructure --startup-project Backend --msbuildprojectextensionspath ../Infrastructure/obj  
 ```
 Esto aplicará las migraciones correctamente.
